@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.travelagency.app.dao.Dao;
+import com.travelagency.app.dao.RoutesDao;
 import com.travelagency.app.dao.UsersDao;
+import com.travelagency.app.entity.Roles;
 import com.travelagency.app.entity.Users;
 
 @Controller
@@ -24,10 +27,17 @@ public class UsersController {
 	@Autowired
 	UsersDao userDao;
 	
+	@Autowired
+	RoutesDao routesDao;
+	
+	@Autowired
+	Dao<Roles> rolesDao;
+	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
 		System.out.println(11111);
 //		System.out.println(userServices);
+		System.out.println(routesDao);
 		System.out.println(userDao);
 		ModelAndView view = new ModelAndView("users");
 		return view;
