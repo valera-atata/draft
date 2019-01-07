@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="routes")
-public class Routes {
+public class RouteEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_id")

@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.travelagency.app.dao.Dao;
+import com.travelagency.app.dao.BaseDao;
 import com.travelagency.app.dao.RoutesDao;
 import com.travelagency.app.dao.UsersDao;
-import com.travelagency.app.entity.Roles;
-import com.travelagency.app.entity.Users;
+import com.travelagency.app.entity.RoleEntity;
+import com.travelagency.app.entity.RouteEntity;
+import com.travelagency.app.entity.UserEntity;
 
 @Controller
 @RequestMapping("users")
@@ -25,31 +26,34 @@ public class UsersController {
 //	UsersService userServices;
 	
 	@Autowired
-	UsersDao userDao;
+	BaseDao<UserEntity> userDao;
 	
 	@Autowired
-	RoutesDao routesDao;
+	BaseDao<RouteEntity> routeDao;
 	
 	@Autowired
-	Dao<Roles> rolesDao;
+	BaseDao<RoleEntity> roleDao;
 	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
 		System.out.println(11111);
 //		System.out.println(userServices);
-		System.out.println(routesDao);
+		System.out.println(routeDao);
+
+		
 		System.out.println(userDao);
+		System.out.println(roleDao);
 		ModelAndView view = new ModelAndView("users");
 		return view;
 	}
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getSaved(Users users){
+	public @ResponseBody Map<String,Object> getSaved(UserEntity userEntity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		System.out.println(22222);
 //		System.out.println(userServices);
 		System.out.println(userDao);
-		if(userDao.saveOrUpdate(users)){
+		if(userDao.saveOrUpdate(userEntity)){
 			map.put("status","200");
 			map.put("message","Your record have been saved successfully");
 		}
@@ -58,12 +62,12 @@ public class UsersController {
 	
 	
 	@RequestMapping(value="/list", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getAll(Users users){
+	public @ResponseBody Map<String,Object> getAll(UserEntity userEntity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		System.out.println(33333);
 //		System.out.println(userServices);
 		System.out.println(userDao);
-		List<Users> list = userDao.list();
+		List<UserEntity> list = userDao.list();
 		if (list != null) {
 			map.put("status","200");
 			map.put("message","Data found");
@@ -77,12 +81,12 @@ public class UsersController {
 	
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> delete(Users users){
+	public @ResponseBody Map<String,Object> delete(UserEntity userEntity){
 		System.out.println(44444);
 //		System.out.println(userServices);
 		System.out.println(userDao);
 		Map<String,Object> map = new HashMap<String,Object>();
-		if(userDao.delete(users)){
+		if(userDao.delete(userEntity)){
 			map.put("status","200");
 			map.put("message","Your record have been deleted successfully");
 		}
