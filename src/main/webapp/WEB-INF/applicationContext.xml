@@ -15,7 +15,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 <!-- Enable autowire -->
 	<context:annotation-config />
- 	<context:component-scan base-package="com" />
+ 	<!-- <context:component-scan base-package="com" /> -->
+ 	<context:component-scan base-package="com.travelagency.app" />
  	
 	<mvc:annotation-driven /> 
 	
@@ -34,7 +35,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.entities" />
+		<property name="packagesToScan" value="com.travelagency.app.entity" />
 		<property name="hibernateProperties">
 			<props>
 				<!-- SQL Dialect -->

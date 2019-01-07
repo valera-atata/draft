@@ -1,4 +1,4 @@
-package com.entities;
+package com.travelagency.app.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

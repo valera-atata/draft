@@ -1,4 +1,4 @@
-package com.daoimpl;
+package com.travelagency.app.hibernatedao;
 
 import java.util.List;
 
@@ -8,13 +8,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.daoapi.UsersDao;
-import com.entities.Users;
-
+import com.travelagency.app.dao.UsersDao;
+import com.travelagency.app.entity.Users;
 
 @Repository
 @Transactional
-public class UsersImpl implements UsersDao{
+public class UsersHhibernateImpl implements UsersDao {
 
 	@Autowired
 	SessionFactory session;

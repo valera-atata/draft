@@ -1,8 +1,8 @@
-package com.daoapi;
+package com.travelagency.app.dao;
 
 import java.util.List;
 
-import com.entities.Users;
+import com.travelagency.app.entity.Users;
 
 public interface UsersDao {
 	public boolean saveOrUpdate(Users users);
