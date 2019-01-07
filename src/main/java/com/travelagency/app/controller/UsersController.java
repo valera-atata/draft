@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.travelagency.app.dao.BaseDao;
-import com.travelagency.app.dao.RoutesDao;
-import com.travelagency.app.dao.UsersDao;
 import com.travelagency.app.entity.RoleEntity;
 import com.travelagency.app.entity.RouteEntity;
 import com.travelagency.app.entity.UserEntity;
@@ -21,9 +19,6 @@ import com.travelagency.app.entity.UserEntity;
 @Controller
 @RequestMapping("users")
 public class UsersController {
-//	
-//	@Autowired
-//	UsersService userServices;
 	
 	@Autowired
 	BaseDao<UserEntity> userDao;

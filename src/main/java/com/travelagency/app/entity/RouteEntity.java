@@ -1,43 +1,68 @@
 package com.travelagency.app.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="routes")
+@Table(name = "routes")
 public class RouteEntity {
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="user_id")
-	private Integer user_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "route_id")
+    private Long routeId;
 	
-	@Column(name="user_name")
-	private String user_name;
+	@Column(name = "route", nullable = true, insertable = true, updatable = true, length = 400)
+    private String route;
 	
-	@Column(name="email")
-	private String email;
-	
-	public Integer getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
-	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
+	@Column(name = "country", nullable = true, insertable = true, updatable = true, length = 200)
+    private String country;
+
+	@OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TourEntity> tours = new HashSet<TourEntity>();
+
+   
+    public Long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Set<TourEntity> getTours() {
+        return this.tours;
+    }
+
+    public void setTours(Set<TourEntity> tours) {
+        this.tours = tours;
+    }
+
+    public void addTour(TourEntity tour) {
+    	tour.setRoute(this);
+    	getTours().add(tour);
+    }
+
+    public void removeTour(TourEntity tour) {
+    	getTours().remove(tour);
+    }
+    
 }
